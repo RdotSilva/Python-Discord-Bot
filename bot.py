@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from keys import bot_token
 
 # Instance of the bot with a prefix.
 client = commands.Bot(command_prefix = '.')
