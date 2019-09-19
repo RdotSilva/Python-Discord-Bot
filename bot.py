@@ -10,10 +10,12 @@ client = commands.Bot(command_prefix = '.')
 async def on_ready():
     print('Bot is ready.')
 
+# Announce when member joins server.
 @client.event
 async def on_member_join(member):
     print(f'{member} has joined a server.')
 
+# Announce when member leaves server.
 @client.event
 async def on_member_remove(member):
     print(f'{member} has left a server.')
