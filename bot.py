@@ -20,6 +20,11 @@ async def on_member_join(member):
 async def on_member_remove(member):
     print(f'{member} has left a server.')
 
+# Ping the bot.
+@client.command()
+async def ping(ctx):
+    await ctx.send(f'Pong! {round(client.latency * 1000)} ms')
+
 
 # Run bot using token
 client.run(bot_token)
