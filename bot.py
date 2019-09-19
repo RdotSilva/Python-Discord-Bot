@@ -26,7 +26,8 @@ async def on_member_remove(member):
 async def ping(ctx):
     await ctx.send(f'Pong! {round(client.latency * 1000)} ms')
 
-
+# Magic 8ball. Ask the bot a question & get back an answer.
+# Can trigger by typing 8ball or eightball (due to aliases)
 @client.command(aliases=['8ball', 'eightball'])
 async def _8ball(ctx, *, question):
     responses = [
