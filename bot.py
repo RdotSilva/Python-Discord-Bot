@@ -59,6 +59,10 @@ async def _8ball(ctx, *, question):
 async def clear(ctx, amount=2):
     await ctx.channel.purge(limit=amount)
 
+# Command to kick a member from the channel.
+@client.command()
+async def kick(ctx, member : discord.Member, *, reason=None):
+    await member.kick(reason=reason)
 
 # Run bot using token
 client.run(bot_token)
