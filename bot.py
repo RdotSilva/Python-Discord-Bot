@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from keys import bot_token
+import random
 
 # Instance of the bot with a prefix.
 client = commands.Bot(command_prefix = '.')
@@ -24,6 +25,13 @@ async def on_member_remove(member):
 @client.command()
 async def ping(ctx):
     await ctx.send(f'Pong! {round(client.latency * 1000)} ms')
+
+
+@client.command(aliases=['8ball', 'eightball'])
+async def _8ball(ctx, *, question):
+    
+
+    await ctx.send(f'Question: {question}\nAnswer: {random.choice(responses)}')
 
 
 # Run bot using token
