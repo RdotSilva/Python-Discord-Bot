@@ -64,5 +64,10 @@ async def clear(ctx, amount=2):
 async def kick(ctx, member : discord.Member, *, reason=None):
     await member.kick(reason=reason)
 
+# Command to ban a member from the channel.
+@client.command()
+async def ban(ctx, member: discord.Member, *, reason=None):
+    await member.ban(reason=reason)
+
 # Run bot using token
 client.run(bot_token)
