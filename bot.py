@@ -68,6 +68,7 @@ async def kick(ctx, member : discord.Member, *, reason=None):
 @client.command()
 async def ban(ctx, member: discord.Member, *, reason=None):
     await member.ban(reason=reason)
+    await ctx.send(f'Banned {user.mention}')
 
 # Command to un-ban a member from the channel.
 @client.command()
