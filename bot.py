@@ -89,5 +89,9 @@ async def unban(ctx, *, member):
 async def load(ctx, extension):
     client.load_extension(f'cogs.{extension}')
 
+@client.command()
+async def unload(ctx, extension):
+    client.unload_extension(f'cogs.{extension}')
+
 # Run bot using token
 client.run(bot_token)
