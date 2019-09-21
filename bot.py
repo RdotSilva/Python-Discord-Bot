@@ -1,8 +1,11 @@
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 from keys import bot_token
 import random
 import os
+from itertools import cycle
+
+status = cycle(['Status 1', 'Status 2', 'Status 3', 'Status 4'])
 
 # Instance of the bot with a prefix.
 client = commands.Bot(command_prefix = '.')
@@ -111,7 +114,11 @@ def load_all_cogs():
             client.load_extension(f'cogs.{filename[:-3]}')
 
 # Call this when you what to load all cogs, if not comment out.
-load_all_cogs()
+#load_all_cogs()
+
+@tasks.loop(seconds=10)
+async def change_status():
+
 
 # Run bot using token
 client.run(bot_token)
