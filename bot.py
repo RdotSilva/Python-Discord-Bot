@@ -75,6 +75,12 @@ async def _8ball(ctx, *, question):
 async def clear(ctx, amount : int):
     await ctx.channel.purge(limit=amount)
 
+# Check if the user issuing commands has the id set to your_id
+def is_it_me(ctx):
+    return ctx.author.id = your_id
+
+
+
 # Error handling to specifically handle the clear command.
 @clear.error
 async def clear_error(ctx, error):
