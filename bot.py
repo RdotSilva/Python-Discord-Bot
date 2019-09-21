@@ -69,5 +69,12 @@ async def kick(ctx, member : discord.Member, *, reason=None):
 async def ban(ctx, member: discord.Member, *, reason=None):
     await member.ban(reason=reason)
 
+# Command to un-ban a member from the channel.
+@client.command()
+async def unban(ctx, *, member):
+    # Get all banned users.
+    banned_users = await ctx.guild.bans()
+    member_name, member_descriminator = member.split('#')
+
 # Run bot using token
 client.run(bot_token)
