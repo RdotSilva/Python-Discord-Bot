@@ -77,7 +77,7 @@ async def clear(ctx, amount : int):
 
 # Check if the user issuing commands has the id set to your_id
 def is_it_me(ctx):
-    return ctx.author.id = your_id
+    return ctx.author.id == your_id
 
 # Custom check command that will test if is_it_me function is true.
 @client.command()
