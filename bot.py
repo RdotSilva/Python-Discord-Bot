@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from keys import bot_token
 import random
+import os
 
 # Instance of the bot with a prefix.
 client = commands.Bot(command_prefix = '.')
@@ -92,6 +93,12 @@ async def load(ctx, extension):
 @client.command()
 async def unload(ctx, extension):
     client.unload_extension(f'cogs.{extension}')
+
+# Get all files within cogs directory with .py extension & load the cog.
+for filename in os.listdir('./cogs'):
+    if filename.endswith('.py'):
+        # Remove the .py extension from the cog file while loading.
+        client.load_extension(f'cogs.{filename[:-3]}')
 
 # Run bot using token
 client.run(bot_token)
