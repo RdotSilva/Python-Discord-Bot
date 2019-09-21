@@ -17,11 +17,11 @@ async def on_ready():
     change_status.start()
     print('Bot is ready.')
 
-# Handles error checking for missing arguments.
+# Handles error invalid command used.
 @client.event
 async def on_command_error(ctx, error):
-    if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send('Please pass in all required arguments.')
+    if isinstance(error, commands.CommandNotFound):
+        await ctx.send('Invalid command used.')
 
 # Announce when member joins server.
 @client.event
