@@ -86,10 +86,12 @@ async def unban(ctx, *, member):
             await ctx.send(f'Unbanned {user.mention}')
             return
 
+# Load a cog.
 @client.command()
 async def load(ctx, extension):
     client.load_extension(f'cogs.{extension}')
 
+# Unload a cog.
 @client.command()
 async def unload(ctx, extension):
     client.unload_extension(f'cogs.{extension}')
