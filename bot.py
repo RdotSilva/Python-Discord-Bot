@@ -79,7 +79,11 @@ async def clear(ctx, amount : int):
 def is_it_me(ctx):
     return ctx.author.id = your_id
 
-
+# Custom check command that will test if is_it_me function is true.
+@client.command()
+@commands.check(is_it_me)
+async def custom_check(ctx):
+    await ctx.send(f'Hi I'm {ctx.author})
 
 # Error handling to specifically handle the clear command.
 @clear.error
