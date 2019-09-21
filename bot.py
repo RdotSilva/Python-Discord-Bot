@@ -83,7 +83,7 @@ def is_it_me(ctx):
 @client.command()
 @commands.check(is_it_me)
 async def custom_check(ctx):
-    await ctx.send(f'Hi I'm {ctx.author})
+    await ctx.send(f'Hi I am {ctx.author})
 
 # Error handling to specifically handle the clear command.
 @clear.error
