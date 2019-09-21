@@ -7,11 +7,6 @@ import os
 # Instance of the bot with a prefix.
 client = commands.Bot(command_prefix = '.')
 
-# Check for ready state
-# @client.event 
-# async def on_ready():
-#     print('Bot is ready.')
-
 # Check for ready state & change status/activity of bot.
 @client.event
 async def on_ready():
@@ -29,9 +24,9 @@ async def on_member_remove(member):
     print(f'{member} has left a server.')
 
 # Ping the bot.
-# @client.command()
-# async def ping(ctx):
-#     await ctx.send(f'Pong! {round(client.latency * 1000)} ms')
+@client.command()
+async def ping(ctx):
+    await ctx.send(f'Pong! {round(client.latency * 1000)} ms')
 
 # Magic 8ball. Ask the bot a question & get back an answer.
 # Can trigger by typing 8ball or eightball (due to aliases)
@@ -115,6 +110,8 @@ def load_all_cogs():
             # Remove the .py extension from the cog file while loading.
             client.load_extension(f'cogs.{filename[:-3]}')
 
+# Call this when you what to load all cogs, if not comment out.
+load_all_cogs()
 
 # Run bot using token
 client.run(bot_token)
