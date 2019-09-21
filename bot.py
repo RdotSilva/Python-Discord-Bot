@@ -116,8 +116,11 @@ def load_all_cogs():
 # Call this when you what to load all cogs, if not comment out.
 #load_all_cogs()
 
+# Task that will change bot status every 10 seconds.
+# Uses the status list to cycle different statuses.
 @tasks.loop(seconds=10)
 async def change_status():
+    await client.change_presence(activity=discord.Game(next(status)))
 
 
 # Run bot using token
