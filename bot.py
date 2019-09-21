@@ -109,10 +109,12 @@ async def reload(ctx, extension):
     client.load_extension(f'cogs.{extension}')
 
 # Get all files within cogs directory with .py extension & load the cog.
-for filename in os.listdir('./cogs'):
-    if filename.endswith('.py'):
-        # Remove the .py extension from the cog file while loading.
-        client.load_extension(f'cogs.{filename[:-3]}')
+def load_all_cogs():
+    for filename in os.listdir('./cogs'):
+        if filename.endswith('.py'):
+            # Remove the .py extension from the cog file while loading.
+            client.load_extension(f'cogs.{filename[:-3]}')
+
 
 # Run bot using token
 client.run(bot_token)
