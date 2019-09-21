@@ -14,7 +14,14 @@ client = commands.Bot(command_prefix = '.')
 @client.event
 async def on_ready():
     await client.change_presence(status=discord.Status.idle, activity=discord.Game('Admin Bot'))
+    change_status.start()
     print('Bot is ready.')
+
+# Handles error checking for missing arguments.
+@client.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send('Please pass in all required arguments.')
 
 # Announce when member joins server.
 @client.event
@@ -61,7 +68,7 @@ async def _8ball(ctx, *, question):
 
 # Command to clear messages from channel. Amount is the number of messages to clear.
 @client.command()
-async def clear(ctx, amount=2):
+async def clear(ctx, amount : int):
     await ctx.channel.purge(limit=amount)
 
 # Command to kick a member from the channel.
