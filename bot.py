@@ -71,6 +71,12 @@ async def _8ball(ctx, *, question):
 async def clear(ctx, amount : int):
     await ctx.channel.purge(limit=amount)
 
+# Error handling to specifically handle the clear command.
+@clear.error
+async def clear_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send('Please specify an amount of messages to delete.')
+
 # Command to kick a member from the channel.
 @client.command()
 async def kick(ctx, member : discord.Member, *, reason=None):
