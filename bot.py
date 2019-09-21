@@ -8,8 +8,14 @@ import os
 client = commands.Bot(command_prefix = '.')
 
 # Check for ready state
-@client.event 
+# @client.event 
+# async def on_ready():
+#     print('Bot is ready.')
+
+# Check for ready state & change status/activity of bot.
+@client.event
 async def on_ready():
+    await client.change_presence(status=discord.Status.idle, activity=discord.Game('Admin Bot'))
     print('Bot is ready.')
 
 # Announce when member joins server.
@@ -23,9 +29,9 @@ async def on_member_remove(member):
     print(f'{member} has left a server.')
 
 # Ping the bot.
-@client.command()
-async def ping(ctx):
-    await ctx.send(f'Pong! {round(client.latency * 1000)} ms')
+# @client.command()
+# async def ping(ctx):
+#     await ctx.send(f'Pong! {round(client.latency * 1000)} ms')
 
 # Magic 8ball. Ask the bot a question & get back an answer.
 # Can trigger by typing 8ball or eightball (due to aliases)
