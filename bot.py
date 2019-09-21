@@ -7,6 +7,8 @@ from itertools import cycle
 
 status = cycle(['Status 1', 'Status 2', 'Status 3', 'Status 4'])
 
+your_id = 'ADD YOUR DISCORD ID HERE'
+
 # Instance of the bot with a prefix.
 client = commands.Bot(command_prefix = '.')
 
@@ -67,7 +69,9 @@ async def _8ball(ctx, *, question):
     await ctx.send(f'Question: {question}\nAnswer: {random.choice(responses)}')
 
 # Command to clear messages from channel. Amount is the number of messages to clear.
+# Checks to make sure user has permissions.
 @client.command()
+@commands.has_permissions(manage_messages=True)
 async def clear(ctx, amount : int):
     await ctx.channel.purge(limit=amount)
 
