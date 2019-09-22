@@ -174,6 +174,7 @@ def load_all_cogs():
 async def change_status():
     await client.change_presence(activity=discord.Game(next(status)))
 
+# Update user data when they join the channel.
 @client.event
 async def on_member_join(member):
     with open('users.json', 'r') as f:
@@ -184,6 +185,7 @@ async def on_member_join(member):
     with open('users.json', 'w') as f:
         json.dump(users, f)
 
+# Update user data/experience/level when they send a message.
 @client.event
 async def on_message(message):
     with open('users.json', 'r') as f:
@@ -203,6 +205,7 @@ async def update_data(users, user):
         users[user.id]['experience'] = 0
         users[user.id]['level'] = 1
 
+# Add experience to a user.
 async def add_experience(users, user, exp):
     users[user.id]['experience'] += exp
 
