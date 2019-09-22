@@ -186,6 +186,15 @@ async def on_member_join(member):
 
 @client.event
 async def on_message(message):
+    with open('users.json', 'r') as f:
+        users = json.load(f)
+    
+    await update_data(users, message.author):
+    await add_experience(users, message.author, 5)
+    await level_up(users, message.author, message.channel)
+        
+    with open('users.json', 'w') as f:
+        json.dump(users, f)
 
 # Run bot using token
 client.run(bot_token)
