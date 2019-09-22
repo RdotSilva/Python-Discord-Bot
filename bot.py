@@ -177,5 +177,8 @@ async def change_status():
 @client.event
 async def on_member_join(member):
 
+@client.event
+async def on_message(message):
+
 # Run bot using token
 client.run(bot_token)
