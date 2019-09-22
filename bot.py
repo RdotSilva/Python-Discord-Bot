@@ -176,6 +176,11 @@ async def change_status():
 
 @client.event
 async def on_member_join(member):
+    with open('users.json', 'r') as f:
+        users = json.load(f)
+        
+    with open('users.json', 'w') as f:
+        json.dump(users, f)
 
 @client.event
 async def on_message(message):
