@@ -203,5 +203,9 @@ async def update_data(users, user):
         users[user.id]['experience'] = 0
         users[user.id]['level'] = 1
 
+async def add_experience(users, user, exp):
+    users[user.id]['experience'] += exp
+    
+
 # Run bot using token
 client.run(bot_token)
