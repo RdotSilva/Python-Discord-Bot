@@ -1,9 +1,13 @@
 import discord
 from discord.ext import commands, tasks
-from keys import bot_token
+from keys import bot_token, current_dir
+import json
 import random
 import os
 from itertools import cycle
+
+# Make sure we are in the correct directory.
+os.chdir(current_dir)
 
 status = cycle(["Status 1", "Status 2", "Status 3", "Status 4"])
 
