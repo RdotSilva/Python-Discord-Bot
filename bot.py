@@ -205,7 +205,17 @@ async def update_data(users, user):
 
 async def add_experience(users, user, exp):
     users[user.id]['experience'] += exp
-    
+
+# Level up a user.
+async def level_up(users, user, channel):
+    experience = users[user.id]['experience']
+    lvl_start = users[user.id]['level']
+    lvl_end = int(experience ** (1/4))
+
+    if lvl_start < lvl_end:
+        await client.send_message(channel, f"{user.mention} has leveled up to level {lvl_end}")
+        users[user.id]['level'] = lvl_end
+
 
 # Run bot using token
 client.run(bot_token)
