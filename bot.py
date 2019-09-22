@@ -196,5 +196,12 @@ async def on_message(message):
     with open('users.json', 'w') as f:
         json.dump(users, f)
 
+# Update user data including level & experience.
+async def update_data(users, user):
+    if not user.id in users:
+        users[user.id] = {}
+        users[user.id]['experience'] = 0
+        users[user.id]['level'] = 1
+
 # Run bot using token
 client.run(bot_token)
