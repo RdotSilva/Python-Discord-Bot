@@ -34,9 +34,9 @@ async def on_command_error(ctx, error):
 
 
 # Announce when member joins server.
-@client.event
-async def on_member_join(member):
-    print(f"{member} has joined a server.")
+# @client.event
+# async def on_member_join(member):
+#     print(f"{member} has joined a server.")
 
 
 # Announce when member leaves server.
@@ -174,50 +174,57 @@ def load_all_cogs():
 async def change_status():
     await client.change_presence(activity=discord.Game(next(status)))
 
+
 # Update user data when they join the channel.
 @client.event
 async def on_member_join(member):
-    with open('users.json', 'r') as f:
+    with open("users.json", "r") as f:
         users = json.load(f)
-    
-    await update_data(users, member):
-        
-    with open('users.json', 'w') as f:
+
+    await update_data(users, member)
+
+    with open("users.json", "w") as f:
         json.dump(users, f)
+
 
 # Update user data/experience/level when they send a message.
 @client.event
 async def on_message(message):
-    with open('users.json', 'r') as f:
+    with open("users.json", "r") as f:
         users = json.load(f)
-    
-    await update_data(users, message.author):
+
+    await update_data(users, message.author)
     await add_experience(users, message.author, 5)
     await level_up(users, message.author, message.channel)
-        
-    with open('users.json', 'w') as f:
+
+    with open("users.json", "w") as f:
         json.dump(users, f)
+
 
 # Update user data including level & experience.
 async def update_data(users, user):
     if not user.id in users:
         users[user.id] = {}
-        users[user.id]['experience'] = 0
-        users[user.id]['level'] = 1
+        users[user.id]["experience"] = 0
+        users[user.id]["level"] = 1
+
 
 # Add experience to a user.
 async def add_experience(users, user, exp):
-    users[user.id]['experience'] += exp
+    users[user.id]["experience"] += exp
+
 
 # Level up a user.
 async def level_up(users, user, channel):
-    experience = users[user.id]['experience']
-    lvl_start = users[user.id]['level']
-    lvl_end = int(experience ** (1/4))
+    experience = users[user.id]["experience"]
+    lvl_start = users[user.id]["level"]
+    lvl_end = int(experience ** (1 / 4))
 
     if lvl_start < lvl_end:
-        await client.send_message(channel, f"{user.mention} has leveled up to level {lvl_end}")
-        users[user.id]['level'] = lvl_end
+        await client.send(
+            channel, "{} has leveled up to level {}".format(user.mention, lvl_end)
+        )
+        users[user.id]["level"] = lvl_end
 
 
 # Run bot using token
