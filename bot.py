@@ -174,6 +174,8 @@ def load_all_cogs():
 async def change_status():
     await client.change_presence(activity=discord.Game(next(status)))
 
+@client.event
+async def on_member_join(member):
 
 # Run bot using token
 client.run(bot_token)
